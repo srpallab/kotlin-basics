@@ -1,0 +1,364 @@
+#+title: Learning Kotlin.
+#+author: Shafiqur Rhaman
+#+options: h:1 num:nil toc:nil
+
+* Build command for ~kotlin~ code compile and Execute.
+  #+begin_src bash
+    kotlinc basic-operation.kt -include-runtime -d basi-opration.jar
+    java -jar basi-opration.jar
+  #+end_src
+
+* Five Basic Concepts are 
+  - Variables and Types
+  - Control Flows
+  - Functions
+  - Collections
+  - Classes and Objects (including inheritance)
+
+
+* Variables and Data Types
+  - There is two types of variables in ~kotlin~
+    - Mutable
+      #+begin_src kotlin
+	var aquarium = 1
+	aquarium = 50
+      #+end_src
+
+    - Immutable 
+      #+begin_src kotlin
+	val fish = "Nemo"
+      #+end_src
+
+  - Immutable list can not reassign new value but can be manipulate
+    list.
+    #+begin_src kotlin
+      val myList = mutalbleListOf("tuna", "salmon", "shark")
+      myList.remove("shark")
+    #+end_src
+
+  - Byte
+    #+begin_src kotlin
+      val myByte: Byte = 13
+    #+end_src
+
+  - Short
+    #+begin_src kotlin
+      val myShort: Short = 125
+    #+end_src
+
+  - Int
+    #+begin_src kotlin
+      val myInt: Int = 12345678
+    #+end_src
+
+  - Long
+    #+begin_src kotlin
+      val myLong: Long = 12_123_123_123_1234
+    #+end_src
+
+  - Float
+    #+begin_src kotlin
+      val myFloar: Float = 13.43F
+    #+end_src
+
+  - Double
+    #+begin_src kotlin
+      val myDouble: Double = 3.1233445535445
+    #+end_src
+
+  - Boolean
+    #+begin_src kotlin
+      val myBoolean: Boolean = true
+    #+end_src
+
+  - Char
+    #+begin_src kotlin
+      val myChar: Char = 'A'
+    #+end_src
+
+  - String
+    #+begin_src kotlin
+      val myString: String = "Shafiqur Rahman"
+    #+end_src
+* Arithmetic Operators 
+  - (+, -, /, *, %)
+  - int divide by int returns int
+  - float divide by float returns float
+    #+begin_src kotlin
+      1/2 // Will return 0
+      1.0/20. // Will return 0.5
+    #+end_src
+  - Arithmetic Methods
+    #+begin_src kotlin
+      val fish = 2
+      fish.times(6)
+      fish.div(10)
+      fish.plus(3)
+      fish.minus(3)
+    #+end_src
+  - Boxing
+    #+begin_src kotlin
+      1.toLong()
+
+      val boxed: Number = 1
+      boxed.toLong()
+    #+end_src
+* Comparison Operators
+  - ~(==, !=, <, >, <=, >=)~
+
+* Null Safety
+  - Add ~?~ to indicate variable can contain null value
+    #+begin_src kotlin
+      var marble: Int? = null
+      var lotsOfFish: List<String?> = listOf(null, null)
+      var evenMoreFish: List<String>? = null
+      var definitelyFish: List<String?>? = null
+    #+end_src
+  - Force a null able type in ~kotlin~
+    #+begin_src kotlin
+      goldfish!!.eat()
+    #+end_src
+  - Null check operator ~?:~ Elvis Operator
+    #+begin_src kotlin
+      return fishFoodTreats?.dec() ?: 0
+    #+end_src
+  - Safe Call Operator ~?.let~
+    #+begin_src kotlin
+      var nullableName: String? = "Pallab"
+
+      nullableName?.let { println(it.length) }
+    #+end_src
+
+* Switch
+  #+begin_src kotlin
+    var welcomeMessage = "Hello and welcome to Kotlin"
+    when (welcomeMessage.length) {
+       0 -> println("Nothing to say?")
+       in 1..50 -> println("Perfect")
+       else -> println("Too long!")
+    }
+  #+end_src
+* Array
+  - Typed Array
+    #+begin_src kotlin
+      val numbers = intArrayOf(1, 2, 3)
+    #+end_src
+
+  - Non Typed Array
+    #+begin_src kotlin
+      import java.utils.*
+
+      val school = arrayOf("tuna", "salmon", "shark")
+      println(Arrays.toString(school))
+    #+end_src
+
+  - Arrays of arrays
+    #+begin_src kotlin
+      import java.util.*
+
+      var fish = 12
+      var plants = 5
+
+      val swam = listOf(fish, plants)
+
+      val bigSwarm = arrayOf(swam, arrayOf("Dolphin", "Whale", "orka"))
+
+
+      println(Arrays.toString(bigSwarm))
+    #+end_src
+
+  - Array comprehension
+    #+begin_src kotlin
+      val array = Array(5) { it * 2 }
+      println(array.asList())
+    #+end_src
+
+  -
+* List
+* Map
+* For Loop
+  - looping without index
+    #+begin_src kotlin
+      for (element in swarm) println(element)
+    #+end_src
+  - looping with index
+    #+begin_src kotlin 
+      for ((index, element) in swarm.withIndex()){
+	  println("Fish at $index is $element")
+      }
+    #+end_src
+  - Ranges print
+    #+begin_src kotlin
+      for (i in 'b'..'g') println(i)
+
+      for (i in 1..120) println(i)
+
+      for (i in 5 downTo 1) println(i)
+
+      for (i in 3..6 step 2) println(i)
+    #+end_src
+* For Each
+* While Loop
+  #+begin_src kotlin
+    var x = 1
+    while(x <= 10) {
+	println("$x")
+	x++
+    }
+    println("While loop is done.")
+  #+end_src
+
+* Repeat Loop
+* Filer
+  - Eager Filter (Create a new list)
+    #+begin_src kotlin
+      val decorations = listOf(
+	  "rock", "pagoda", "plastic plant", "alligator", "flowerpot"
+      )
+      val eager = decorations.filter { it[0] == 'p'}
+      println(eager)
+    #+end_src
+
+  - Lazy Filter 
+    #+begin_src kotlin
+      val decorations = listOf(
+	  "rock", "pagoda", "plastic plant", "alligator", "flowerpot"
+      )
+      val filtered = decorations.asSequence().filter() { it[0] == 'p' }
+      println(filtered)
+      println(filtered.toList())
+    #+end_src
+* ~lambda~
+  - A value assigned at compile time, and the value never changes when
+    the variable is accessed.
+
+  - a lambda assigned at compile time, and the lambda is executed
+    every time the variable is referenced, returning a different
+    value. 
+* Class
+  #+begin_src kotlin
+    class Aquarium (
+	var width: Int = 20,
+	var height: Int = 40,
+	var length: Int = 100
+    ) {
+	var volume: Int 
+	    get() = width * height * length / 1000
+	    set(value) { height = (value * 1000) / (width  * length) }
+
+	var water = volume * 0.9
+
+	constructor(numberOfFish: Int): this() {
+	    val water: Int = numberOfFish * 2000
+	    val tank: Double = water + (water * 0.1)
+	    height = (tank / (length * width)).toInt()
+	}
+    
+    }
+
+
+    fun main() {
+	val smallAquarium = Aquarium(numberOfFish = 9)
+	println(
+	    " Length: ${smallAquarium.length} " +
+	    " Width: ${smallAquarium.width} " +
+	    " height: ${smallAquarium.height} "
+	)
+
+	println("Volume: ${smallAquarium.volume}")
+    }
+  #+end_src
+* Package Visibility 
+  - public - Default Everywhere.
+  - private - File
+  - internal - Module
+* Class Visibility
+  - public - Default. Class and public member
+  - private - Inside class. Sub classes =can't= see.
+  - protected - Inside class. Sub classes can see.
+  - internal - Module
+* Inheritance 
+  - We have to add ~open~ to class to make sub class from it.
+  - We have to add ~override~ to sub class to override properties or
+    methods.
+    #+begin_src kotlin
+      import kotlin.math.PI
+
+      open class BaseAquarium (
+	  var lenght: Int = 100,
+	  var width: Int = 20,
+	  var height: Int = 40
+      ){
+	  open var volume: Int
+	      get() = (width * height * lenght) / 1000
+	      set(value) { height = (value * 1000) / (width * lenght) }
+
+	  open var water = volume * 0.9
+
+	  constructor(numberOfFish: Int): this(){
+	      val water: Int = numberOfFish * 2000
+	      val tank: Double = water + (water * 0.1)
+	      height = (tank / (lenght * width)).toInt()
+	  }
+      }
+
+
+      class TowerTank(): BaseAquarium() {
+	  override var water = volume * 0.8
+
+	  override var volume: Int
+	      get() = ((width * height * lenght) / 1000 * PI).toInt() 
+	      set(value) { height = (value * 1000) / (width * lenght) }
+      }
+
+
+      fun main() {
+	  var myTowerTank = TowerTank()
+
+	  println("Volume of new tower tank aquarium ${myTowerTank.volume}")
+    
+      }
+
+    #+end_src
+* Abstract Class, Interface, Singleton Object
+  #+begin_src kotlin
+    fun main() {
+	delegate()
+    }
+
+    fun delegate(){
+	val pleco = Plecostomus()
+	println("Fish has color ${pleco.color}")
+	pleco.eat()
+    }
+
+    interface FishAction{
+	fun eat()
+    }
+
+    interface FishColor {
+	val color: String
+    }
+
+    class Plecostomus(fishColor: FishColor = GoldColor):
+	FishAction by PrintingFishAction("a lot of Food"),
+	FishColor by fishColor
+
+    
+    object GoldColor: FishColor {
+	override val color = "gold" 
+    }
+
+
+    object RedColor: FishColor {
+	override val color = "red" 
+    }
+
+
+    class PrintingFishAction(val food: String): FishAction {
+	override fun eat() {
+	    println(food)
+	}
+    }
+
+  #+end_src

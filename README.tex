@@ -1,0 +1,413 @@
+% Created 2022-10-13 বৃহঃ 13:23
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{fullpage}
+\usepackage[avoid-all]{widows-and-orphans}
+\usepackage{svg}
+\author{Shafiqur Rhaman}
+\date{\today}
+\title{Learning Kotlin.}
+\hypersetup{
+ pdfauthor={Shafiqur Rhaman},
+ pdftitle={Learning Kotlin.},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section*{Build command for \texttt{kotlin} code compile and Execute.}
+\label{sec:org1f8b53d}
+\begin{verbatim}
+kotlinc basic-operation.kt -include-runtime -d basi-opration.jar
+java -jar basi-opration.jar
+\end{verbatim}
+\section*{Variables and Data Types}
+\label{sec:org6b4bcc3}
+\begin{itemize}
+\item There is two types of variables in \texttt{kotlin}
+\begin{itemize}
+\item Mutable
+\begin{verbatim}
+var aquarium = 1
+aquarium = 50
+\end{verbatim}
+
+\item Immutable 
+\begin{verbatim}
+val fish = "Nemo"
+\end{verbatim}
+\end{itemize}
+
+\item Immutable list can not reassign new value but can be manipulate
+list.
+\begin{verbatim}
+val myList = mutalbleListOf("tuna", "salmon", "shark")
+myList.remove("shark")
+\end{verbatim}
+
+\item Byte
+\begin{verbatim}
+val myByte: Byte = 13
+\end{verbatim}
+
+\item Short
+\begin{verbatim}
+val myShort: Short = 125
+\end{verbatim}
+
+\item Int
+\begin{verbatim}
+val myInt: Int = 12345678
+\end{verbatim}
+
+\item Long
+\begin{verbatim}
+val myLong: Long = 12_123_123_123_1234
+\end{verbatim}
+
+\item Float
+\begin{verbatim}
+val myFloar: Float = 13.43F
+\end{verbatim}
+
+\item Double
+\begin{verbatim}
+val myDouble: Double = 3.1233445535445
+\end{verbatim}
+
+\item Boolean
+\begin{verbatim}
+val myBoolean: Boolean = true
+\end{verbatim}
+
+\item Char
+\begin{verbatim}
+val myChar: Char = 'A'
+\end{verbatim}
+
+\item String
+\begin{verbatim}
+val myString: String = "Shafiqur Rahman"
+\end{verbatim}
+\end{itemize}
+\section*{Arithmetic Operators}
+\label{sec:orgb6a1b84}
+\begin{itemize}
+\item (+, -, /, *, \%)
+\item int divide by int returns int
+\item float divide by float returns float
+\begin{verbatim}
+1/2 // Will return 0
+1.0/20. // Will return 0.5
+\end{verbatim}
+\item Arithmetic Methods
+\begin{verbatim}
+val fish = 2
+fish.times(6)
+fish.div(10)
+fish.plus(3)
+fish.minus(3)
+\end{verbatim}
+\item Boxing
+\begin{verbatim}
+1.toLong()
+
+val boxed: Number = 1
+boxed.toLong()
+\end{verbatim}
+\end{itemize}
+\section*{Comparison Operators}
+\label{sec:org35be737}
+\begin{itemize}
+\item \texttt{(==, !=, <, >, <=, >=)}
+\end{itemize}
+
+\section*{Null Safety}
+\label{sec:org1545b3e}
+\begin{itemize}
+\item Add \texttt{?} to indicate variable can contain null value
+\begin{verbatim}
+var marble: Int? = null
+var lotsOfFish: List<String?> = listOf(null, null)
+var evenMoreFish: List<String>? = null
+var definitelyFish: List<String?>? = null
+\end{verbatim}
+\item Force a null able type in \texttt{kotlin}
+\begin{verbatim}
+goldfish!!.eat()
+\end{verbatim}
+\item Null check operator
+\begin{verbatim}
+return fishFoodTreats?.dec() ?: 0
+\end{verbatim}
+\end{itemize}
+\section*{Switch}
+\label{sec:org466d341}
+\begin{verbatim}
+var welcomeMessage = "Hello and welcome to Kotlin"
+when (welcomeMessage.length) {
+   0 -> println("Nothing to say?")
+   in 1..50 -> println("Perfect")
+   else -> println("Too long!")
+}
+\end{verbatim}
+\section*{Array}
+\label{sec:org27627a9}
+\begin{itemize}
+\item Typed Array
+\begin{verbatim}
+val numbers = intArrayOf(1, 2, 3)
+\end{verbatim}
+
+\item Non Typed Array
+\begin{verbatim}
+import java.utils.*
+
+val school = arrayOf("tuna", "salmon", "shark")
+println(Arrays.toString(school))
+\end{verbatim}
+
+\item Arrays of arrays
+\begin{verbatim}
+import java.util.*
+
+var fish = 12
+var plants = 5
+
+val swam = listOf(fish, plants)
+
+val bigSwarm = arrayOf(swam, arrayOf("Dolphin", "Whale", "orka"))
+
+
+println(Arrays.toString(bigSwarm))
+\end{verbatim}
+
+\item Array comprehension
+\begin{verbatim}
+val array = Array(5) { it * 2 }
+println(array.asList())
+\end{verbatim}
+
+\item 
+\end{itemize}
+\section*{List}
+\label{sec:orgbe1bdbe}
+\section*{Map}
+\label{sec:org941f5a1}
+\section*{For Loop}
+\label{sec:org996b439}
+\begin{itemize}
+\item looping without index
+\begin{verbatim}
+for (element in swarm) println(element)
+\end{verbatim}
+\item looping with index
+\begin{verbatim}
+for ((index, element) in swarm.withIndex()){
+    println("Fish at $index is $element")
+}
+\end{verbatim}
+\item Ranges print
+\begin{verbatim}
+for (i in 'b'..'g') println(i)
+
+for (i in 1..120) println(i)
+
+for (i in 5 downTo 1) println(i)
+
+for (i in 3..6 step 2) println(i)
+\end{verbatim}
+\end{itemize}
+\section*{For Each}
+\label{sec:orge817409}
+\section*{While Loop}
+\label{sec:orgd19467f}
+\section*{Repeat Loop}
+\label{sec:org6e859f9}
+\section*{Filer}
+\label{sec:orga3ad6a3}
+\begin{itemize}
+\item Eager Filter (Create a new list)
+\begin{verbatim}
+val decorations = listOf(
+    "rock", "pagoda", "plastic plant", "alligator", "flowerpot"
+)
+val eager = decorations.filter { it[0] == 'p'}
+println(eager)
+\end{verbatim}
+
+\item Lazy Filter 
+\begin{verbatim}
+val decorations = listOf(
+    "rock", "pagoda", "plastic plant", "alligator", "flowerpot"
+)
+val filtered = decorations.asSequence().filter() { it[0] == 'p' }
+println(filtered)
+println(filtered.toList())
+\end{verbatim}
+\end{itemize}
+\section*{\texttt{lambda}}
+\label{sec:org2a8c4f6}
+\begin{itemize}
+\item A value assigned at compile time, and the value never changes when
+the variable is accessed.
+
+\item a lambda assigned at compile time, and the lambda is executed
+every time the variable is referenced, returning a different
+value.
+\end{itemize}
+\section*{Class}
+\label{sec:orge9a59e4}
+\begin{verbatim}
+class Aquarium (
+    var width: Int = 20,
+    var height: Int = 40,
+    var length: Int = 100
+) {
+    var volume: Int 
+	get() = width * height * length / 1000
+	set(value) { height = (value * 1000) / (width  * length) }
+
+    var water = volume * 0.9
+
+    constructor(numberOfFish: Int): this() {
+	val water: Int = numberOfFish * 2000
+	val tank: Double = water + (water * 0.1)
+	height = (tank / (length * width)).toInt()
+    }
+
+}
+
+
+fun main() {
+    val smallAquarium = Aquarium(numberOfFish = 9)
+    println(
+	" Length: ${smallAquarium.length} " +
+	" Width: ${smallAquarium.width} " +
+	" height: ${smallAquarium.height} "
+    )
+
+    println("Volume: ${smallAquarium.volume}")
+}
+\end{verbatim}
+\section*{Package Visibility}
+\label{sec:org510cb8e}
+\begin{itemize}
+\item public - Default Everywhere.
+\item private - File
+\item internal - Module
+\end{itemize}
+\section*{Class Visibility}
+\label{sec:org31ad2f2}
+\begin{itemize}
+\item public - Default. Class and public member
+\item private - Inside class. Sub classes \texttt{can't} see.
+\item protected - Inside class. Sub classes can see.
+\item internal - Module
+\end{itemize}
+\section*{Inheritance}
+\label{sec:org216d34d}
+\begin{itemize}
+\item We have to add \texttt{open} to class to make sub class from it.
+\item We have to add \texttt{override} to sub class to override properties or
+methods.
+\begin{verbatim}
+import kotlin.math.PI
+
+open class BaseAquarium (
+    var lenght: Int = 100,
+    var width: Int = 20,
+    var height: Int = 40
+){
+    open var volume: Int
+	get() = (width * height * lenght) / 1000
+	set(value) { height = (value * 1000) / (width * lenght) }
+
+    open var water = volume * 0.9
+
+    constructor(numberOfFish: Int): this(){
+	val water: Int = numberOfFish * 2000
+	val tank: Double = water + (water * 0.1)
+	height = (tank / (lenght * width)).toInt()
+    }
+}
+
+
+class TowerTank(): BaseAquarium() {
+    override var water = volume * 0.8
+
+    override var volume: Int
+	get() = ((width * height * lenght) / 1000 * PI).toInt() 
+	set(value) { height = (value * 1000) / (width * lenght) }
+}
+
+
+fun main() {
+    var myTowerTank = TowerTank()
+
+    println("Volume of new tower tank aquarium ${myTowerTank.volume}")
+
+}
+
+\end{verbatim}
+\end{itemize}
+\section*{Abstract Class, Interface, Singleton Object}
+\label{sec:org8656b27}
+\begin{verbatim}
+fun main() {
+    delegate()
+}
+
+fun delegate(){
+    val pleco = Plecostomus()
+    println("Fish has color ${pleco.color}")
+    pleco.eat()
+}
+
+interface FishAction{
+    fun eat()
+}
+
+interface FishColor {
+    val color: String
+}
+
+class Plecostomus(fishColor: FishColor = GoldColor):
+    FishAction by PrintingFishAction("a lot of Food"),
+    FishColor by fishColor
+
+
+object GoldColor: FishColor {
+    override val color = "gold" 
+}
+
+
+object RedColor: FishColor {
+    override val color = "red" 
+}
+
+
+class PrintingFishAction(val food: String): FishAction {
+    override fun eat() {
+	println(food)
+    }
+}
+
+\end{verbatim}
+\end{document}
