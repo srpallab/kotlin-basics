@@ -14,8 +14,6 @@
   - Functions
   - Collections
   - Classes and Objects (including inheritance)
-
-
 * Variables and Data Types
   - There is two types of variables in ~kotlin~
     - Mutable
