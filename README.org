@@ -3,11 +3,14 @@
 #+options: h:1 num:nil toc:nil
 
 * Build command for ~kotlin~ code compile and Execute.
-  #+begin_src bash
-    kotlinc basic-operation.kt -include-runtime -d basi-opration.jar
-    java -jar basi-opration.jar
-  #+end_src
-
+  - Install ~OpenJdk~ from apt
+  - Download Kotlin compiler from ~github~
+  - Then add bin folder path to ~.bashrc~
+  - compile command
+    #+BEGIN_SRC bash
+      kotlinc basic-operation.kt -include-runtime -d basi-opration.jar
+      java -jar basi-opration.jar
+    #+END_SRC
 * Five Basic Concepts are
 ** Variables and Types
    - A variable is a location in memory (storage).
