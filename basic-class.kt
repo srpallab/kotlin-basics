@@ -14,17 +14,15 @@ class Aquarium (
 	val tank: Double = water + (water * 0.1)
 	height = (tank / (length * width)).toInt()
     }
-    
+    init {
+	println("Length: $length")
+	println("Width: $width")
+	println("Height: $height")
+    }    
 }
 
 
 fun main() {
     val smallAquarium = Aquarium(numberOfFish = 9)
-    println(
-	" Length: ${smallAquarium.length} " +
-	" Width: ${smallAquarium.width} " +
-	" height: ${smallAquarium.height} "
-    )
-
     println("Volume: ${smallAquarium.volume}")
 }
