@@ -8,12 +8,26 @@
     java -jar basi-opration.jar
   #+end_src
 
-* Five Basic Concepts are 
-  - Variables and Types
-  - Control Flows
-  - Functions
-  - Collections
-  - Classes and Objects (including inheritance)
+* Five Basic Concepts are
+** Variables and Types
+   - A variable is a location in memory (storage).
+   - To indicate the storage area, each variable should be given a
+     unique name (Identifier).
+** Control Flows
+   - Do something conditionally
+   - To repeatedly run code conditionally.
+** Functions
+   - Functions enable us to separate code.
+   - Run code blocks when needed.
+** Collections
+   - Collections enable us to store multiple elements in one place.
+   - Iterate through multiple elements (with the help of control
+     flows).
+** Classes and Objects (including inheritance)
+   - Create our own data types
+   - Keep the data members and methods together in one place.
+   - Write more readable and maintainable code.
+   - Work better in a team.
 * Variables and Data Types
   - There is two types of variables in ~kotlin~
     - Mutable
@@ -126,13 +140,16 @@
 
       nullableName?.let { println(it.length) }
     #+end_src
-
-* Switch
+  - Chain Null check
+    #+begin_src kotlin
+      val age: String? = user?.wife?.age ?: 0
+    #+end_src
+* Switch with When
   #+begin_src kotlin
     var welcomeMessage = "Hello and welcome to Kotlin"
     when (welcomeMessage.length) {
-       0 -> println("Nothing to say?")
-       in 1..50 -> println("Perfect")
+       0, 1 -> println("Nothing to say?")
+       in 2..50 -> println("Perfect")
        else -> println("Too long!")
     }
   #+end_src
@@ -193,7 +210,11 @@
 
       for (i in 5 downTo 1) println(i)
 
+      for (i in 5 downTo 1 step 2) println(i)
+
       for (i in 3..6 step 2) println(i)
+
+      for (i in 1 until 10) println(i)
     #+end_src
 * For Each
 * While Loop
@@ -205,9 +226,17 @@
     }
     println("While loop is done.")
   #+end_src
+* Do While Loop
+  #+begin_src kotlin
+    x = 15
 
+    do {
+	print("$x")
+	x++
+    } while(x <= 10)
+  #+end_src
 * Repeat Loop
-* Filer
+* Filter
   - Eager Filter (Create a new list)
     #+begin_src kotlin
       val decorations = listOf(
