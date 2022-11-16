@@ -265,6 +265,29 @@
   - a lambda assigned at compile time, and the lambda is executed
     every time the variable is referenced, returning a different
     value. 
+* Classes 
+  - Simple way to create a class
+    #+begin_src kotlin
+      Class Person constructor(_firstName: String, _lastName: String) {
+	  // Member Variable (Properties) of the class
+	  var firstName: String
+	  var lastName: String
+
+	  // Initializer Blocks
+	  init {
+	      this.firstName = _firstName
+	      this.lastName = _lastName
+	      println("First Name: $firstName")
+	      println("Last Name: $lastName")
+	  }
+      }
+
+      fun main() {
+	  var pallab = Person("Pallab", "pal")
+      }
+    #+end_src
+
+
 * Class
   #+begin_src kotlin
     class Aquarium (
@@ -278,11 +301,13 @@
 
 	var water = volume * 0.9
 
+	// Member Secondary Constructor
 	constructor(numberOfFish: Int): this() {
 	    val water: Int = numberOfFish * 2000
 	    val tank: Double = water + (water * 0.1)
 	    height = (tank / (length * width)).toInt()
 	}
+
 	init {
 	    println("Length: $length")
 	    println("Width: $width")
