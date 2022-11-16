@@ -268,11 +268,11 @@
 * Classes 
   - Simple way to create a class
     #+begin_src kotlin
-      Class Person constructor(_firstName: String, _lastName: String) {
+      class Person constructor(_firstName: String, _lastName: String) {
 	  // Member Variable (Properties) of the class
 	  var firstName: String
 	  var lastName: String
-
+    
 	  // Initializer Blocks
 	  init {
 	      this.firstName = _firstName
@@ -283,12 +283,81 @@
       }
 
       fun main() {
-	  var pallab = Person("Pallab", "pal")
+	  val pallab = Person("Pallab", "pal")
+	  println(pallab)
       }
     #+end_src
+  - More Simple way to create a class
+    #+BEGIN_SRC kotlin
+      class Person(_firstName: String, _lastName: String){
+	   // Member Variables (Properties) of the class
+	  var firstName: String = _firstName
+	  var lastName: String = _lastName
+ 
+	  // Initializer Block
+	  init {
+	      println("FirstName = $firstName and LastName = $lastName")
+	  }
+      }
+
+      fun main() {
+	  val pallab = Person("Pallab", "pal")
+	  println(pallab)
+      }
+    #+END_SRC
+  - Even more simple way to create a class
+    #+BEGIN_SRC kotlin
+      class Person(var firstName: String = "Jhon", var lastName: String = "Doe"){
+	  // Initializer Blocks
+	  init {
+	      println("First Name: $firstName")
+	      println("Last Name: $lastName")
+	  }
+      }
+
+      fun main() {
+	  val pallab = Person("Pallab", "pal")
+	  println(pallab)
+      }
+    #+END_SRC
+  - With Secondary Constructor
+    #+BEGIN_SRC kotlin
+      class Person (var firstName: String = "Shafiqur", var lastName: String = "Rahman"){
+	  var hobby: String = "Fishing"
+	  // This property is import for Secondary Constructor
+	  var age: Int? = null
+	  // This property is import for Secondary Overload Constructor
+	  var eyeColor: String? = null
+
+	  // Secondary Constructor
+	  constructor(firstName: String, lastName: String, age: Int): this(firstName, lastName){
+	      this.age = if (age > 0) age else throw IllegalArgumentException("Age must be greater than zero")
+	  }
+
+	  // Secondary Constructor Overloaded
+	  constructor(firstName: String, lastName: String, age: Int, eyeColor: String): 
+		  this(firstName, lastName, age)  {
+	      this.eyeColor = eyeColor
+	  }
+
+	  // Method
+	  fun sayHobby(){
+	      println("$firstName\'s Hobby is $hobby.")
+	  }
+      }
 
 
-* Class
+      fun main() {
+	  var shafiq = Person()
+	  shafiq.sayHobby()
+	  var pallab = Person("Shafiq", "Pallab")
+	  pallab.sayHobby()
+	  var dia = Person("Habiba", "Akter", 20)
+	  dia.hobby = "Planting"
+	  dia.sayHobby()
+      }
+    #+END_SRC
+* Class Example
   #+begin_src kotlin
     class Aquarium (
 	var width: Int = 20,
@@ -321,6 +390,59 @@
 	println("Volume: ${smallAquarium.volume}")
     }
   #+end_src
+* SETTERS AND ~GETTERS~ 
+  - Kotlin internally generates a default getter and setter for
+    mutable properties,
+  - ~Getter~ (only) for read-only properties.
+  - Example
+    #+BEGIN_SRC kotlin
+      class Car(_brand: String, _model: String, _maxSpeed: Int){
+	  val _brand: String = _brand
+	      get() = field
+
+	  var _model: String = _model
+	      get() = field
+	      set(value) {field = value}
+
+	  var _maxSpeed: Int = _maxSpeed
+	      get() = field
+	      set(value) {field = value}
+      }
+    #+END_SRC
+  - Backing Field (field)
+    #+BEGIN_SRC kotlin
+      class Car {
+	  lateinit var owner: String
+	  val myBrand: String = "BMW"
+	  // Custom Getter
+	      get() { return field.lowercase() }
+
+	  var myModel: String = "M5"
+	  // Default Setter and Getter
+	      private set
+
+
+	  var myMaxSpeed: Int = 40
+	      get() = field
+	  // Custom Setter
+	      set(value) {
+		  field = if(value > 0) value
+		  else throw IllegalArgumentException("_maxSpeed must be greater than zero")
+	      }
+
+	  init {
+	      this.owner = "Shafiq"
+	  }
+      }
+
+      fun main() {
+	  val myCar = Car()
+	  println(myCar.myBrand)
+	  println(myCar.myModel)
+	  myCar.myMaxSpeed = 100
+	  println(myCar.myMaxSpeed)
+      }
+    #+END_SRC
 * Package Visibility 
   - public - Default Everywhere.
   - private - File
