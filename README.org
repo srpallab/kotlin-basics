@@ -156,23 +156,32 @@
        else -> println("Too long!")
     }
   #+end_src
-* Array
+* Array (Collections)
   - Typed Array
     #+begin_src kotlin
+      // IntArray
       val numbers = intArrayOf(1, 2, 3)
+      // BooleanArray
+      val bools = booleanArrayOf(T, F) 
+      // DoubleArray
+      val doubles = doublesArrayOf(3.0, 4.0, 5.0)
+      // ByteArray
+      // LongArray
+      // ShortArray
+      // FloatArray
     #+end_src
 
   - Non Typed Array
     #+begin_src kotlin
-      import java.utils.*
-
+      // arrayOf<String>
       val school = arrayOf("tuna", "salmon", "shark")
       println(Arrays.toString(school))
+      // arrayOf<Fruit>
+      val colects = array(1, 2, "Jhon", "Doe", 0.5, Fruit())
     #+end_src
 
   - Arrays of arrays
     #+begin_src kotlin
-      import java.util.*
 
       var fish = 12
       var plants = 5
@@ -192,8 +201,19 @@
     #+end_src
 
   -
-* List
-* Map
+* List (Collections)
+  #+begin_src kotlin
+    // List of Strings
+    val stringList: List<String> = listOf("Denish", "Frank", "Michael", "Greater")
+    // List of Mixed Type
+    val mixedTypeList: List<Any> = listOf("Denish", 31, 5, "Bday", 70.5, "KG")
+  #+end_src
+
+* Map (Collections)
+  #+begin_src kotlin
+    // mapOf key, value
+  #+end_src
+
 * For Loop
   - looping without index
     #+begin_src kotlin
