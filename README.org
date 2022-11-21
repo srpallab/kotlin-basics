@@ -162,7 +162,6 @@
       // IntArray
       val numbers = intArrayOf(1, 2, 3)
       // BooleanArray
-      val bools = booleanArrayOf(T, F) 
       // DoubleArray
       // ByteArray
       // LongArray
@@ -199,18 +198,136 @@
       println(array.asList())
     #+end_src
 
-  -
+  - Array of data class
+    #+begin_src kotlin
+      data class Fruit(val name: String, val price: Double)
+
+      val fruits = arrayOf(Fruit("Apple", 2.5), Fruit("Grape", 3.5))
+
+      for (fruit in fruits){
+	  println("${fruit.name}")
+      }
+
+      for(index in fruits.indices){
+	  println("${fruits[index].name} is in index $index")
+      }
+    #+end_src
+
+* Array List
+  - Array List are used to create a dynamic array. Which means the
+    size of an array can be increased or decreased according to
+    requirement.
+  - The Array List class provide both read and write functionality
+  - The Array List follows the sequence of insertion order.
+  - An array is non synchronized and it may contain duplicate element.
+  - ~ArrayList<E>():~ Is used to create an empty Array List.
+  - ~ArrayList(capacity: Int):~ Is used to create an Array List of
+    specified capacity.
+  - ~ArrayList(elements: Collection<E>):~ Is used to create an Array
+    List filled with the elements of a collection.
+  - ~open fun add(element: E): Boolean~ -> used to add the specific
+    element into the collection.
+  - ~open fun clear()~ -> used to remove all elements from the collection.
+  - ~open fun get(index: Int): E~ -> used to return the element at
+    specific index in the list.
+  - ~open fun remove(element: E): Boolean~ -> used to remove a single
+    instance of the specific element from current collection, if it is
+    available.
+  - Empty Array List 
+    #+begin_src kotlin
+      fun main() {
+	  val arrayList = ArrayList<String>()
+
+	  arrayList.add("One")
+	  arrayList.add("Two")
+
+	  for(i in arrayList){
+	      println(i)
+	  }
+      }
+    #+end_src
+  - Array List using collection
+    #+begin_src kotlin
+      fun main() {
+	  val arrayList: ArrayList<String> = ArrayList<String>(5)
+	  var list: MutableList<String> = mutableListOf<String>()
+
+	  list.add("One")
+	  list.add("Two")
+
+	  arrayList.addAll(list)
+
+	  val itr = arrayList.iterator()
+
+	  while (itr.hasNext()) {
+	      println(itr.next())
+	  }
+
+	  println("Size of array list = ${arrayList.size}")
+    
+      }
+    #+end_src
+  - Array List get 
+    #+begin_src kotlin
+      fun main() {
+	  val arrayList: ArrayList<String> = ArrayList<String>()
+
+	  arrayList.add("One")
+	  arrayList.add("Two")
+
+	  for (i in arrayList) {
+	      println(i)
+	  }
+
+	  println(arrayList.get(1))
+      }
+    #+end_src
 * List (Collections)
   #+begin_src kotlin
     // List of Strings
-    val stringList: List<String> = listOf("Denish", "Frank", "Michael", "Greater")
+    val stringList: List<String> = listOf(
+	"Denish", "Frank", "Michael", "Greater"
+    )
     // List of Mixed Type
-    val mixedTypeList: List<Any> = listOf("Denish", 31, 5, "Bday", 70.5, "KG")
+    val mixedTypeList: List<Any> = listOf(
+	"Denish", 31, 5, "Bday", 70.5, "KG"
+    )
+
+    val months = listOf("January", "February", "March")
+
+
+    val additionalMonths = months.toMutableList()
+    val newMonths = arrayOf("April", "May", "June")
+    additionalMonths.addAll(newMonths)
+    additionalMonths.add("July")
+
+    print(additionalMonths)
+
+
+    val days = mutableListOf<String>("Saturday", "Sunday", "Monday")
+
+    print(day)
   #+end_src
 
 * Map (Collections)
   #+begin_src kotlin
+    val fruits = setOf("Orange", "Apple", "Mango", "Apple", "Grape", "Orange")
+    print(fruits.size)
+
     // mapOf key, value
+
+    val daysOfTheWeek = mapOf(1 to "Monday", 2 to "Tuesday", 3 to "Wednesday")
+
+    for(key in daysOfTheWeek.keys){
+	println("$key is to ${daysOfTheWeek[key]}")
+    }
+
+    data class Fruit(val name: String, val price: Double)
+
+    val fruitsMap = mapOf(
+	"Favorite" to Fruit("Mango", 2.5),
+	"Okay" to Fruit("Apple", 1.0)
+    )
   #+end_src
 
 * For Loop
@@ -278,12 +395,37 @@
       println(filtered.toList())
     #+end_src
 * ~lambda~
+  - Lambda (Expression) is a function which has no name.
+
+  - Lambda expression and anonymous functions are 'function literals'
+    i.e. functions that are not declared, but passed immediately as an
+    expression.
+
+  - Lambda is defined with curly braces {} which takes variables as a
+    parameter (if any) and a body of a function.
+
+  - The body of a function is written after the variable (if any)
+    followed by ~->~ operator.
+
+  - Syntax : {variable(s) -> body_of_lambda}
+
   - A value assigned at compile time, and the value never changes when
     the variable is accessed.
 
   - a lambda assigned at compile time, and the lambda is executed
     every time the variable is referenced, returning a different
-    value. 
+    value.
+
+  - Example:
+    #+begin_src kotlin
+      val sum: (Int, Int) -> Int = { a: Int, b: Int -> a + b }
+      pritln(sum(10, 5))
+
+      // Even Shorter
+      val sum = { a: Int, b: Int -> println(a + b) }
+      sum(10, 15)
+    #+end_src
+
 * Classes 
   - Simple way to create a class
     #+begin_src kotlin
@@ -471,6 +613,8 @@
   - private - Inside class. Sub classes =can't= see.
   - protected - Inside class. Sub classes can see.
   - internal - Module
+  - In kotlin all classes are ~final~ by default, so they can't be
+    inherited by default.
 * Inheritance 
   - We have to add ~open~ to class to make sub class from it.
   - We have to add ~override~ to sub class to override properties or
@@ -556,3 +700,88 @@
     }
 
   #+end_src
+* Nested Class
+  - Nested class is such which is created inside another class.
+  - In kotlin, a nested class is by default static, so its data
+    members and member functions can be accessed without creating an
+    object of the class.
+  - Nested class can't access the data members of the outer classes.
+  - Example
+    #+begin_src kotlin
+      class OuterClass {
+	  private var name: String = "Mr. X"
+
+	  class NestedClass {
+	      var description: String = "Code inside the nested class"
+	      private var id: Int = 101
+
+	      fun foo(){
+		  println("Id is $id")
+	      }
+	  }
+      }
+
+      fun main() {
+	  println(OuterClass.NestedClass().description)
+
+	  var obj = OuterClass.NestedClass()
+
+	  obj.foo()
+      }
+    #+end_src
+* Inner Class
+  - An Inner Class is a class which is created inside another class
+    with key word ~inner~
+  - Inner class can't be declared inside interface or non-inner nested class
+  - It is able to access members of its outer class even it is private.
+  - Example
+    #+begin_src kotlin
+      class OuterClass {
+	  private var name: String = "Mr. X"
+
+	  class NestedClass {
+	      var description: String = "Code inside the nested class"
+	      private var id: Int = 101
+
+	      fun foo(){
+		  println("name is $name")
+		  println("Id is $id")
+	      }
+	  }
+      }
+
+      fun main() {
+	  println(OuterClass.NestedClass().description)
+
+	  var obj = OuterClass.NestedClass()
+
+	  obj.foo()
+      }
+
+    #+end_src
+* Safe cast operator ~as?~
+  #+begin_src kotlin
+    fun main() {
+	val location: Any = "Kotlin"
+	val safeString: String? = location as? String
+	val safeInt: Int? = location as? Int
+
+	println(safeString)
+	println(safeInt)
+    }
+  #+end_src
+* Exception Handling 
+  - ~Throwable~ Class
+    #+begin_src kotlin
+      throw MyExeption ("this throws an Exception")
+    #+end_src
+  - There are four different keywords used in exception
+    handling. These are:
+    - try : the try block contain a set of statements which might
+      generate an exception. It must be followed by either catch or
+      finally or both.
+    - catch : the catch block is used to catch the exception thrown
+      from try block.
+    - finally
+    - throw
+

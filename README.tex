@@ -1,4 +1,4 @@
-% Created 2022-10-13 বৃহঃ 13:23
+% Created 2022-11-20 Sun 18:27
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -14,9 +14,6 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-\usepackage{fullpage}
-\usepackage[avoid-all]{widows-and-orphans}
-\usepackage{svg}
 \author{Shafiqur Rhaman}
 \date{\today}
 \title{Learning Kotlin.}
@@ -32,13 +29,57 @@
 \maketitle
 
 \section*{Build command for \texttt{kotlin} code compile and Execute.}
-\label{sec:org1f8b53d}
+\label{sec:org737dd8c}
+\begin{itemize}
+\item Install \texttt{OpenJdk} from apt
+\item Download Kotlin compiler from \texttt{github}
+\item Then add bin folder path to \texttt{.bashrc}
+\item compile command
 \begin{verbatim}
 kotlinc basic-operation.kt -include-runtime -d basi-opration.jar
 java -jar basi-opration.jar
 \end{verbatim}
+\end{itemize}
+\section*{Five Basic Concepts are}
+\label{sec:org29a6255}
+\begin{itemize}
+\item Variables and Types
+\label{sec:org48cc7c8}
+\begin{itemize}
+\item A variable is a location in memory (storage).
+\item To indicate the storage area, each variable should be given a
+unique name (Identifier).
+\end{itemize}
+\item Control Flows
+\label{sec:orgb5f8370}
+\begin{itemize}
+\item Do something conditionally
+\item To repeatedly run code conditionally.
+\end{itemize}
+\item Functions
+\label{sec:orgd92a717}
+\begin{itemize}
+\item Functions enable us to separate code.
+\item Run code blocks when needed.
+\end{itemize}
+\item Collections
+\label{sec:org0ce0bb7}
+\begin{itemize}
+\item Collections enable us to store multiple elements in one place.
+\item Iterate through multiple elements (with the help of control
+flows).
+\end{itemize}
+\item Classes and Objects (including inheritance)
+\label{sec:org1a214cf}
+\begin{itemize}
+\item Create our own data types
+\item Keep the data members and methods together in one place.
+\item Write more readable and maintainable code.
+\item Work better in a team.
+\end{itemize}
+\end{itemize}
 \section*{Variables and Data Types}
-\label{sec:org6b4bcc3}
+\label{sec:orgebdc62d}
 \begin{itemize}
 \item There is two types of variables in \texttt{kotlin}
 \begin{itemize}
@@ -107,7 +148,7 @@ val myString: String = "Shafiqur Rahman"
 \end{verbatim}
 \end{itemize}
 \section*{Arithmetic Operators}
-\label{sec:orgb6a1b84}
+\label{sec:org69c960c}
 \begin{itemize}
 \item (+, -, /, *, \%)
 \item int divide by int returns int
@@ -133,13 +174,13 @@ boxed.toLong()
 \end{verbatim}
 \end{itemize}
 \section*{Comparison Operators}
-\label{sec:org35be737}
+\label{sec:orgf4de9a1}
 \begin{itemize}
 \item \texttt{(==, !=, <, >, <=, >=)}
 \end{itemize}
 
 \section*{Null Safety}
-\label{sec:org1545b3e}
+\label{sec:orgf271448}
 \begin{itemize}
 \item Add \texttt{?} to indicate variable can contain null value
 \begin{verbatim}
@@ -152,40 +193,58 @@ var definitelyFish: List<String?>? = null
 \begin{verbatim}
 goldfish!!.eat()
 \end{verbatim}
-\item Null check operator
+\item Null check operator \texttt{?:} Elvis Operator
 \begin{verbatim}
 return fishFoodTreats?.dec() ?: 0
 \end{verbatim}
+\item Safe Call Operator \texttt{?.let}
+\begin{verbatim}
+var nullableName: String? = "Pallab"
+
+nullableName?.let { println(it.length) }
+\end{verbatim}
+\item Chain Null check
+\begin{verbatim}
+val age: String? = user?.wife?.age ?: 0
+\end{verbatim}
 \end{itemize}
-\section*{Switch}
-\label{sec:org466d341}
+\section*{Switch with When}
+\label{sec:org5b632ed}
 \begin{verbatim}
 var welcomeMessage = "Hello and welcome to Kotlin"
 when (welcomeMessage.length) {
-   0 -> println("Nothing to say?")
-   in 1..50 -> println("Perfect")
+   0, 1 -> println("Nothing to say?")
+   in 2..50 -> println("Perfect")
    else -> println("Too long!")
 }
 \end{verbatim}
-\section*{Array}
-\label{sec:org27627a9}
+\section*{Array (Collections)}
+\label{sec:orgb3cc5f4}
 \begin{itemize}
 \item Typed Array
 \begin{verbatim}
+// IntArray
 val numbers = intArrayOf(1, 2, 3)
+// BooleanArray
+// DoubleArray
+val doubles = doublesArrayOf(3.0, 4.0, 5.0)
+// ByteArray
+// LongArray
+// ShortArray
+// FloatArray
 \end{verbatim}
 
 \item Non Typed Array
 \begin{verbatim}
-import java.utils.*
-
+// arrayOf<String>
 val school = arrayOf("tuna", "salmon", "shark")
 println(Arrays.toString(school))
+// arrayOf<Fruit>
+val colects = array(1, 2, "Jhon", "Doe", 0.5, Fruit())
 \end{verbatim}
 
 \item Arrays of arrays
 \begin{verbatim}
-import java.util.*
 
 var fish = 12
 var plants = 5
@@ -204,14 +263,132 @@ val array = Array(5) { it * 2 }
 println(array.asList())
 \end{verbatim}
 
-\item 
+\item Array of data class
+\begin{verbatim}
+data class Fruit(val name: String, val price: Double)
+
+val fruits = arrayOf(Fruit("Apple", 2.5), Fruit("Grape", 3.5))
+
+for (fruit in fruits){
+    println("${fruit.name}")
+}
+
+for(index in fruits.indices){
+    println("${fruits[index].name} is in index $index")
+}
+\end{verbatim}
 \end{itemize}
-\section*{List}
-\label{sec:orgbe1bdbe}
-\section*{Map}
-\label{sec:org941f5a1}
+
+\section*{Array List}
+\label{sec:org16a8a43}
+\begin{itemize}
+\item Array List are used to create a dynamic array. Which means the
+size of an array can be increased or decreased according to
+requirement.
+\item The Array List class provide both read and write functionality
+\item The Array List follows the sequence of insertion order.
+\item An array is non synchronized and it may contain duplicate element.
+\item \texttt{ArrayList<E>():} Is used to create an empty Array List.
+\item \texttt{ArrayList(capacity: Int):} Is used to create an Array List of
+specified capacity.
+\item \texttt{ArrayList(elements: Collection<E>):} Is used to create an Array
+List filled with the elements of a collection.
+\item \texttt{open fun add(element: E): Boolean} -> used to add the specific
+element into the collection.
+\item \texttt{open fun clear()} -> used to remove all elements from the collection.
+\item \texttt{open fun get(index: Int): E} -> used to return the element at
+specific index in the list.
+\item \texttt{open fun remove(element: E): Boolean} -> used to remove a single
+instance of the specific element from current collection, if it is
+available.
+\item Empty Array List 
+\begin{verbatim}
+fun main() {
+    val arrayList = ArrayList<String>()
+
+    arrayList.add("One")
+    arrayList.add("Two")
+
+    for(i in arrayList){
+	println(i)
+    }
+}
+\end{verbatim}
+\item Array List using collection
+\begin{verbatim}
+fun main() {
+    val arrayList: ArrayList<String> = ArrayList<String>(5)
+    var list: MutableList<String> = mutableListOf<String>()
+
+    list.add("One")
+    list.add("Two")
+
+    arrayList.addAll(list)
+
+    val itr = arrayList.iterator()
+
+    while (itr.hasNext()) {
+	println(itr.next())
+    }
+
+    println("Size of array list = ${arrayList.size}")
+
+}
+\end{verbatim}
+\end{itemize}
+
+\section*{List (Collections)}
+\label{sec:org738ba43}
+\begin{verbatim}
+// List of Strings
+val stringList: List<String> = listOf(
+    "Denish", "Frank", "Michael", "Greater"
+)
+// List of Mixed Type
+val mixedTypeList: List<Any> = listOf(
+    "Denish", 31, 5, "Bday", 70.5, "KG"
+)
+
+val months = listOf("January", "February", "March")
+
+
+val additionalMonths = months.toMutableList()
+val newMonths = arrayOf("April", "May", "June")
+additionalMonths.addAll(newMonths)
+additionalMonths.add("July")
+
+print(additionalMonths)
+
+
+val days = mutableListOf<String>("Saturday", "Sunday", "Monday")
+
+print(day)
+\end{verbatim}
+
+\section*{Map (Collections)}
+\label{sec:orga1e2ad1}
+\begin{verbatim}
+val fruits = setOf("Orange", "Apple", "Mango", "Apple", "Grape", "Orange")
+print(fruits.size)
+
+// mapOf key, value
+
+val daysOfTheWeek = mapOf(1 to "Monday", 2 to "Tuesday", 3 to "Wednesday")
+
+for(key in daysOfTheWeek.keys){
+    println("$key is to ${daysOfTheWeek[key]}")
+}
+
+data class Fruit(val name: String, val price: Double)
+
+val fruitsMap = mapOf(
+    "Favorite" to Fruit("Mango", 2.5),
+    "Okay" to Fruit("Apple", 1.0)
+)
+\end{verbatim}
+
 \section*{For Loop}
-\label{sec:org996b439}
+\label{sec:org7de060d}
 \begin{itemize}
 \item looping without index
 \begin{verbatim}
@@ -231,17 +408,39 @@ for (i in 1..120) println(i)
 
 for (i in 5 downTo 1) println(i)
 
+for (i in 5 downTo 1 step 2) println(i)
+
 for (i in 3..6 step 2) println(i)
+
+for (i in 1 until 10) println(i)
 \end{verbatim}
 \end{itemize}
 \section*{For Each}
-\label{sec:orge817409}
+\label{sec:orgd9f1eba}
 \section*{While Loop}
-\label{sec:orgd19467f}
+\label{sec:org6d1aecb}
+\begin{verbatim}
+var x = 1
+while(x <= 10) {
+    println("$x")
+    x++
+}
+println("While loop is done.")
+\end{verbatim}
+\section*{Do While Loop}
+\label{sec:orgb233dc4}
+\begin{verbatim}
+x = 15
+
+do {
+    print("$x")
+    x++
+} while(x <= 10)
+\end{verbatim}
 \section*{Repeat Loop}
-\label{sec:org6e859f9}
-\section*{Filer}
-\label{sec:orga3ad6a3}
+\label{sec:org7ba46bb}
+\section*{Filter}
+\label{sec:orgec88113}
 \begin{itemize}
 \item Eager Filter (Create a new list)
 \begin{verbatim}
@@ -263,7 +462,7 @@ println(filtered.toList())
 \end{verbatim}
 \end{itemize}
 \section*{\texttt{lambda}}
-\label{sec:org2a8c4f6}
+\label{sec:org6514579}
 \begin{itemize}
 \item A value assigned at compile time, and the value never changes when
 the variable is accessed.
@@ -272,8 +471,103 @@ the variable is accessed.
 every time the variable is referenced, returning a different
 value.
 \end{itemize}
-\section*{Class}
-\label{sec:orge9a59e4}
+\section*{Classes}
+\label{sec:org738cbd2}
+\begin{itemize}
+\item Simple way to create a class
+\begin{verbatim}
+class Person constructor(_firstName: String, _lastName: String) {
+    // Member Variable (Properties) of the class
+    var firstName: String
+    var lastName: String
+
+    // Initializer Blocks
+    init {
+	this.firstName = _firstName
+	this.lastName = _lastName
+	println("First Name: $firstName")
+	println("Last Name: $lastName")
+    }
+}
+
+fun main() {
+    val pallab = Person("Pallab", "pal")
+    println(pallab)
+}
+\end{verbatim}
+\item More Simple way to create a class
+\begin{verbatim}
+class Person(_firstName: String, _lastName: String){
+     // Member Variables (Properties) of the class
+    var firstName: String = _firstName
+    var lastName: String = _lastName
+
+    // Initializer Block
+    init {
+	println("FirstName = $firstName and LastName = $lastName")
+    }
+}
+
+fun main() {
+    val pallab = Person("Pallab", "pal")
+    println(pallab)
+}
+\end{verbatim}
+\item Even more simple way to create a class
+\begin{verbatim}
+class Person(var firstName: String = "Jhon", var lastName: String = "Doe"){
+    // Initializer Blocks
+    init {
+	println("First Name: $firstName")
+	println("Last Name: $lastName")
+    }
+}
+
+fun main() {
+    val pallab = Person("Pallab", "pal")
+    println(pallab)
+}
+\end{verbatim}
+\item With Secondary Constructor
+\begin{verbatim}
+class Person (var firstName: String = "Shafiqur", var lastName: String = "Rahman"){
+    var hobby: String = "Fishing"
+    // This property is import for Secondary Constructor
+    var age: Int? = null
+    // This property is import for Secondary Overload Constructor
+    var eyeColor: String? = null
+
+    // Secondary Constructor
+    constructor(firstName: String, lastName: String, age: Int): this(firstName, lastName){
+	this.age = if (age > 0) age else throw IllegalArgumentException("Age must be greater than zero")
+    }
+
+    // Secondary Constructor Overloaded
+    constructor(firstName: String, lastName: String, age: Int, eyeColor: String): 
+	    this(firstName, lastName, age)  {
+	this.eyeColor = eyeColor
+    }
+
+    // Method
+    fun sayHobby(){
+	println("$firstName\'s Hobby is $hobby.")
+    }
+}
+
+
+fun main() {
+    var shafiq = Person()
+    shafiq.sayHobby()
+    var pallab = Person("Shafiq", "Pallab")
+    pallab.sayHobby()
+    var dia = Person("Habiba", "Akter", 20)
+    dia.hobby = "Planting"
+    dia.sayHobby()
+}
+\end{verbatim}
+\end{itemize}
+\section*{Class Example}
+\label{sec:orge00b1ed}
 \begin{verbatim}
 class Aquarium (
     var width: Int = 20,
@@ -286,35 +580,91 @@ class Aquarium (
 
     var water = volume * 0.9
 
+    // Member Secondary Constructor
     constructor(numberOfFish: Int): this() {
 	val water: Int = numberOfFish * 2000
 	val tank: Double = water + (water * 0.1)
 	height = (tank / (length * width)).toInt()
     }
 
+    init {
+	println("Length: $length")
+	println("Width: $width")
+	println("Height: $height")
+    }
 }
 
 
 fun main() {
     val smallAquarium = Aquarium(numberOfFish = 9)
-    println(
-	" Length: ${smallAquarium.length} " +
-	" Width: ${smallAquarium.width} " +
-	" height: ${smallAquarium.height} "
-    )
-
     println("Volume: ${smallAquarium.volume}")
 }
 \end{verbatim}
+\section*{SETTERS AND \texttt{GETTERS}}
+\label{sec:orgcc8fcd8}
+\begin{itemize}
+\item Kotlin internally generates a default getter and setter for
+mutable properties,
+\item \texttt{Getter} (only) for read-only properties.
+\item Example
+\begin{verbatim}
+class Car(_brand: String, _model: String, _maxSpeed: Int){
+    val _brand: String = _brand
+	get() = field
+
+    var _model: String = _model
+	get() = field
+	set(value) {field = value}
+
+    var _maxSpeed: Int = _maxSpeed
+	get() = field
+	set(value) {field = value}
+}
+\end{verbatim}
+\item Backing Field (field)
+\begin{verbatim}
+class Car {
+    lateinit var owner: String
+    val myBrand: String = "BMW"
+    // Custom Getter
+	get() { return field.lowercase() }
+
+    var myModel: String = "M5"
+    // Default Setter and Getter
+	private set
+
+
+    var myMaxSpeed: Int = 40
+	get() = field
+    // Custom Setter
+	set(value) {
+	    field = if(value > 0) value
+	    else throw IllegalArgumentException("_maxSpeed must be greater than zero")
+	}
+
+    init {
+	this.owner = "Shafiq"
+    }
+}
+
+fun main() {
+    val myCar = Car()
+    println(myCar.myBrand)
+    println(myCar.myModel)
+    myCar.myMaxSpeed = 100
+    println(myCar.myMaxSpeed)
+}
+\end{verbatim}
+\end{itemize}
 \section*{Package Visibility}
-\label{sec:org510cb8e}
+\label{sec:org7667f9c}
 \begin{itemize}
 \item public - Default Everywhere.
 \item private - File
 \item internal - Module
 \end{itemize}
 \section*{Class Visibility}
-\label{sec:org31ad2f2}
+\label{sec:orgab8b934}
 \begin{itemize}
 \item public - Default. Class and public member
 \item private - Inside class. Sub classes \texttt{can't} see.
@@ -322,7 +672,7 @@ fun main() {
 \item internal - Module
 \end{itemize}
 \section*{Inheritance}
-\label{sec:org216d34d}
+\label{sec:org8f1d88a}
 \begin{itemize}
 \item We have to add \texttt{open} to class to make sub class from it.
 \item We have to add \texttt{override} to sub class to override properties or
@@ -368,7 +718,7 @@ fun main() {
 \end{verbatim}
 \end{itemize}
 \section*{Abstract Class, Interface, Singleton Object}
-\label{sec:org8656b27}
+\label{sec:org14fd81f}
 \begin{verbatim}
 fun main() {
     delegate()
