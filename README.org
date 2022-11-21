@@ -782,6 +782,18 @@
       finally or both.
     - catch : the catch block is used to catch the exception thrown
       from try block.
-    - finally
-    - throw
-
+    - finally: finally block always execute whether exception is
+      handled or not. So it is used to execute important code
+      statements. 
+    - throw: throw an exception explicitly. 
+* Unchecked Exceptions 
+  - This exception type extends the ~RuntimeException~ class.
+  - The unchecked exception is checked at run time.
+  - Example of unchecked exception
+    - ~ArithmeticException~: thrown when we divide a number by zero.
+    - ~ArrayIndexOutOfBoundException~: thrown when an array has been
+      tried to access with incorrect index value.
+    - ~SecurityException~: thrown by the security manager to indicate
+      a security violation.
+    - ~NullPointerException~: thrown when invoking a method or
+      property on a null object.
