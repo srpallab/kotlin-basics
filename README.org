@@ -614,6 +614,8 @@
   - private - Inside class. Sub classes =can't= see.
   - protected - Inside class. Sub classes can see.
   - internal - Module
+  - In kotlin all classes are ~final~ by default, so they can't be
+    inherited by default.
 * Inheritance 
   - We have to add ~open~ to class to make sub class from it.
   - We have to add ~override~ to sub class to override properties or
@@ -699,3 +701,88 @@
     }
 
   #+end_src
+* Nested Class
+  - Nested class is such which is created inside another class.
+  - In kotlin, a nested class is by default static, so its data
+    members and member functions can be accessed without creating an
+    object of the class.
+  - Nested class can't access the data members of the outer classes.
+  - Example
+    #+begin_src kotlin
+      class OuterClass {
+	  private var name: String = "Mr. X"
+
+	  class NestedClass {
+	      var description: String = "Code inside the nested class"
+	      private var id: Int = 101
+
+	      fun foo(){
+		  println("Id is $id")
+	      }
+	  }
+      }
+
+      fun main() {
+	  println(OuterClass.NestedClass().description)
+
+	  var obj = OuterClass.NestedClass()
+
+	  obj.foo()
+      }
+    #+end_src
+* Inner Class
+  - An Inner Class is a class which is created inside another class
+    with key word ~inner~
+  - Inner class can't be declared inside interface or non-inner nested class
+  - It is able to access members of its outer class even it is private.
+  - Example
+    #+begin_src kotlin
+      class OuterClass {
+	  private var name: String = "Mr. X"
+
+	  class NestedClass {
+	      var description: String = "Code inside the nested class"
+	      private var id: Int = 101
+
+	      fun foo(){
+		  println("name is $name")
+		  println("Id is $id")
+	      }
+	  }
+      }
+
+      fun main() {
+	  println(OuterClass.NestedClass().description)
+
+	  var obj = OuterClass.NestedClass()
+
+	  obj.foo()
+      }
+
+    #+end_src
+* Safe cast operator ~as?~
+  #+begin_src kotlin
+    fun main() {
+	val location: Any = "Kotlin"
+	val safeString: String? = location as? String
+	val safeInt: Int? = location as? Int
+
+	println(safeString)
+	println(safeInt)
+    }
+  #+end_src
+* Exception Handling 
+  - ~Throwable~ Class
+    #+begin_src kotlin
+      throw MyExeption ("this throws an Exception")
+    #+end_src
+  - There are four different keywords used in exception
+    handling. These are:
+    - try : the try block contain a set of statements which might
+      generate an exception. It must be followed by either catch or
+      finally or both.
+    - catch : the catch block is used to catch the exception thrown
+      from try block.
+    - finally
+    - throw
+
