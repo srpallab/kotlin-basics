@@ -1,0 +1,51 @@
+* Section 1   : Introduction
+* Section 2   : Data Binding Fundamentals
+** A Simple Data Binding
+   - Enable Data Binding in android section at ~build.gradle:(app)~
+     #+begin_src fundamental
+       buildFeatures {
+	 dataBinding = true
+       }
+     #+end_src
+   - Wrap XML with layout tag
+   - Construct a Data Binding object in the Activity
+     #+begin_src kotlin
+      binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+     #+end_src
+   - Eliminate ~findViewById()~ 
+* Section 3   : Working With ~ViewModels~
+* Section 4   : Live Data
+* Section 5   : View Model & Live Data With Data Binding
+* Section 6   : Activity And Fragment Life Cycles
+* Section 7   : Navigation Architecture Component
+* Section 8   : Android RecyclerView Fundamentals
+* Section 9   : Kotlin ~Coroutine~ Part 1 : Fundamentals
+* Section 10  : Room Data Persistence Library With ~MVVM~
+* Section 11  : Room Migrations
+* Section 12  : Retrofit With ~Coroutines~
+* Section 13  : Notifications
+* Section 14  : Work Manager
+* Section 15  : Dependency Injection With Dagger 2
+* Section 16  : MVVM Clean Architecture Project Example 1
+* Section 17  : Unit Testing
+* Section 18  : View Binding
+* Section 19  : Dagger Hilt
+* Section 20  : MVVM Clean Architecture Project Example 2 (using Hilt & Flow )
+* Section 21  : Jetpack Compose Fundamentals
+* Section 22  : State In Jetpack Compose
+* Section 23  :  Kotlin Coroutine Part 2 : Working With Flows
+* Section 24  :  Jetpack compose MVVM Project Example 1
+* Section 25  :  Effect Handlers In Jetpack Compose
+* Section 26  : Introduction
+* Section 27  :  Easier SQLite With Room
+* Section 28  :  Android Data Binding Mastery 
+* Section 29  :  Complete MVVM Project Example
+* Section 30  :  Retrofit Crash Course
+* Section 31  :  Retrofit With View Model, Live Data And Data Binding 
+* Section 32  :  Android Paging Library
+* Section 33  :  SOLID Principles Of Object Oriented Software Engineering
+* Section 34  :  Dependency Injection With Dagger
+* Section 35  :  Android Work Manager
+* Section 36  :  Navigation Architecture Components Framework 
+* Section 37  :  Lifecycle Aware Components
+* Section 38  :  Conclusion And Bonus Lecture
