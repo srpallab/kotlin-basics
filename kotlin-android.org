@@ -29,12 +29,55 @@
 	 </androidx.constraintlayout.widget.ConstraintLayout>
        </layout>
      #+end_src
-
    - Construct a Data Binding object in the Activity
      #+begin_src kotlin
-      binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+       class MainActivity : AppCompatActivity() {
+	   private lateinit var binding: ActivityMainBinding
+	   override fun onCreate(savedInstanceState: Bundle?) {
+	       super.onCreate(savedInstanceState)
+	       binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+	   }
+       }
      #+end_src
-   - Eliminate ~findViewById()~ 
+   - Eliminate ~findViewById()~
+   - How to pass an object(data) to the xml layout and use them
+     directly.
+     #+begin_src xml
+       <data>
+	 <variable
+	     name="student"
+	     type="com.anushka.bindingdemo3.Student" />
+       </data>
+     #+end_src
+   - In the activity, assign the data object to that defined layout
+     variable 
+     #+begin_src kotlin
+       class MainActivity : AppCompatActivity() {
+	   private lateinit var binding: ActivityMainBinding
+	   override fun onCreate(savedInstanceState: Bundle?) {
+	       super.onCreate(savedInstanceState)
+	       binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+	       binding.student = getStudent()
+	   }
+	   private fun getStudent():Student{
+	       return Student(1,"Alex","alex@gmail.com")
+	   }
+       }
+     #+end_src
+   - In xml layout   Use the properties of the object in xml view
+     components using binding expressions.  
+     #+begin_src xml
+	<TextView
+	   android:id="@+id/name_text"
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   .............
+	   android:text="@{student.name}"
+	   .............
+	   .............
+	   .............
+	   app:layout_constraintVertical_bias="0.415" />
+     #+end_src
 * Section 3   : Working With ~ViewModels~
 * Section 4   : Live Data
 * Section 5   : View Model & Live Data With Data Binding
