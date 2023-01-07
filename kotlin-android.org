@@ -3,11 +3,33 @@
 ** A Simple Data Binding
    - Enable Data Binding in android section at ~build.gradle:(app)~
      #+begin_src fundamental
-       buildFeatures {
-	 dataBinding = true
+       android {
+	 ..........
+	 ..........
+	 ..........
+	 buildFeatures {
+	   dataBinding = true
+	 }
        }
      #+end_src
    - Wrap XML with layout tag
+     #+begin_src xml
+       <?xml version="1.0" encoding="utf-8"?>
+       <layout xmlns:android="http://schemas.android.com/apk/res/android"
+	       xmlns:app="http://schemas.android.com/apk/res-auto"
+	       xmlns:tools="http://schemas.android.com/tools">
+	 <androidx.constraintlayout.widget.ConstraintLayout
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent"
+	     tools:context=".MainActivity">
+	   ..............................................
+	   ..............................................
+	   ..............................................
+	   ..............................................
+	 </androidx.constraintlayout.widget.ConstraintLayout>
+       </layout>
+     #+end_src
+
    - Construct a Data Binding object in the Activity
      #+begin_src kotlin
       binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
