@@ -173,9 +173,17 @@
 * Section 5   : View Model & Live Data With Data Binding
 * Section 6   : Activity And Fragment Life Cycles
 * Section 7   : Navigation Architecture Component
+** Three Main Part of Navigation Component
+   - ~Navigation Graph~
+   - ~NavHostFragment~
+   - ~NavController~
 * Section 8   : Android RecyclerView Fundamentals
 * Section 9   : Kotlin ~Coroutine~ Part 1 : Fundamentals
 * Section 10  : Room Data Persistence Library With ~MVVM~
+** Room Needs Three Specific Classes for Function Correctly 
+   - A room Database Class: Actual SQLite database
+   - A Entity Classes: Represent Tables
+   - A ~DAO~ (Data Object Interfaces) Class: Where SQL Queries written 
 * Section 11  : Room Migrations
 * Section 12  : Retrofit With ~Coroutines~
 * Section 13  : Notifications
