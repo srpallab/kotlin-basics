@@ -141,9 +141,35 @@
 	  }
       }
     #+end_src
-
-
 * Section 4   : Live Data
+  - Android LiveData is a lifecycle-aware, observable data holder
+    class.
+  - As its name suggests, we use it to get live data.
+  - In other words, to get real time updates from the data sources.
+  - Define a live data instance(inside the ViewModel class)
+    #+begin_src kotlin
+      class MainActivityViewModel : ViewModel() {
+	  var count = MutableLiveData<Int>()
+	      ........
+	      ........
+      }
+    #+end_src
+  - Observe a LiveData instance from a view(activity)
+    #+begin_src kotlin
+      class MainActivity : AppCompatActivity() {
+	  ......
+	  private lateinit var viewModel: MainActivityViewModel
+	  override fun onCreate(savedInstanceState: Bundle?) {
+	      ........
+	      ........
+	      viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+	      viewModel.count.observe(this, Observer {
+		  binding.countText.text = it.toString()
+	      })
+		  ........
+	  } 
+      }
+    #+end_src
 * Section 5   : View Model & Live Data With Data Binding
 * Section 6   : Activity And Fragment Life Cycles
 * Section 7   : Navigation Architecture Component
