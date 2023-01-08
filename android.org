@@ -1,0 +1,8 @@
+* Context 
+** Application Context
+   - Get Application Context
+     - from Activity or Service : ~getApplication()~
+     - from subclass of Context: ~getApplicationContext()~
+** Activity Context
+   - 
+

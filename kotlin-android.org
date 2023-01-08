@@ -6,10 +6,10 @@
        android {
 	 ..........
 	 ..........
-	 ..........
 	 buildFeatures {
 	   dataBinding = true
 	 }
+	 ..........
        }
      #+end_src
    - Wrap XML with layout tag
@@ -79,6 +79,70 @@
 	   app:layout_constraintVertical_bias="0.415" />
      #+end_src
 * Section 3   : Working With ~ViewModels~
+  - When we are using an android app, when a configuration change like
+    screen rotation happens, app has to destroy and recreate the
+    activity or fragment with new configurations.
+  - As a result of that, values(states) created during the running
+    period of the activity will also be destroyed.
+  - The Android Jetpack View Model architecture component has
+    introduced as a solution for above problem. We can use a view
+    model object to safely keep and retrieve values(states) of that
+    activity. (Note: this only available during the run time of the
+    app, if we need a permanent data storage we need to use a
+    database)
+  - As its name says, view model is a model for a view. We usually
+    create a view model for each activity.
+  - A ViewModel’s onCleared() is called only when the app is put into
+    the background and the app process is killed in order to free up
+    the system’s memory.Therefore, lifecycle changes of activities and
+    fragments does not affect to their ViewModels.(Activities and
+    fragments may destroy and recreate, but view model will live
+    throughout the process)
+  - Create a ~ViewModel~ Class
+    #+begin_src kotlin
+      class MainActivityViewModel : ViewModel() {
+	  ...........
+	  ...........
+	  ...........
+      }
+    #+end_src
+  - Get an instance(object) of a ViewModel using ViewModel provider.
+    #+begin_src kotlin
+      private lateinit var viewModel: MainActivityViewModel
+      override fun onCreate(savedInstanceState: Bundle?) {
+	  super.onCreate(savedInstanceState)
+	      .......
+	  viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+	      .......
+      }
+    #+end_src
+  - Create A ~ViewModelFactory~
+    #+begin_src kotlin
+      class MainActivityViewModelFactory(private val startingTotal : Int) : ViewModelProvider.Factory {
+	  override fun <T : ViewModel> create(modelClass: Class<T>): T {
+	      if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)){
+		  return MainActivityViewModel(startingTotal) as T
+	      }
+	      throw IllegalArgumentException("Unknown View Model Class")
+	  }
+      }
+    #+end_src
+  - Get an instance(object) of a ViewModel when using a
+    ~ViewModelFactory~.
+    #+begin_src kotlin
+      class MainActivity : AppCompatActivity() {
+	  private lateinit var viewModel: MainActivityViewModel
+	  private lateinit var viewModelFactory: MainActivityViewModelFactory
+	  override fun onCreate(savedInstanceState: Bundle?) {
+	      .........
+	      viewModelFactory = MainActivityViewModelFactory(125)
+	      viewModel = ViewModelProvider(this,viewModelFactory).get(MainActivityViewModel::class.java)
+		  .........
+	  }
+      }
+    #+end_src
+
+
 * Section 4   : Live Data
 * Section 5   : View Model & Live Data With Data Binding
 * Section 6   : Activity And Fragment Life Cycles
